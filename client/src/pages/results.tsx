@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { useTestSession } from '@/hooks/use-test-session';
 import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/lib/i18n';
 
 interface ResultsProps {
   onRetake: () => void;
@@ -12,12 +13,13 @@ interface ResultsProps {
 export default function Results({ onRetake }: ResultsProps) {
   const { session } = useTestSession();
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   if (!session?.result) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-semibold mb-4">결과를 불러오는 중...</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t('loading')}</h2>
         </div>
       </div>
     );
@@ -71,7 +73,7 @@ export default function Results({ onRetake }: ResultsProps) {
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-6">
             {/* Photo Display */}
-            {session.photoFile && (
+            {session.photoFile && session.photoFile instanceof File && (
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}

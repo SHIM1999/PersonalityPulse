@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ProgressBar } from '@/components/progress-bar';
-import { mbtiQuestionsImproved } from '@/lib/mbti-questions-improved';
+import { getRandomQuestions } from '@/lib/mbti-questions-pool';
 import { useTestSession } from '@/hooks/use-test-session';
 
 interface QuestionnaireImprovedProps {
@@ -21,16 +21,17 @@ interface Answer {
 }
 
 export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireImprovedProps) {
+  const [questions] = useState(() => getRandomQuestions()); // 40개 랜덤 질문
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, Answer>>({});
+  const [answers, setAnswers] = useState<Record<number, Answer>>({});
   const [selectedOption, setSelectedOption] = useState<'A' | 'B' | null>(null);
   const [selectedIntensity, setSelectedIntensity] = useState<IntensityLevel | null>(null);
   const [isFlipped, setIsFlipped] = useState(false);
   const { updateAnswers, completeTest, isUpdatingAnswers, isCompletingTest } = useTestSession();
 
-  const question = mbtiQuestionsImproved[currentQuestion];
-  const isLastQuestion = currentQuestion === mbtiQuestionsImproved.length - 1;
-  const currentAnswer = answers[question.id];
+  const question = questions[currentQuestion];
+  const isLastQuestion = currentQuestion === questions.length - 1;
+  const currentAnswer = answers[question?.id];
 
   const intensityLabels = {
     1: '매우 그렇다',
@@ -85,7 +86,7 @@ export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireI
       } else {
         // Move to next question
         setCurrentQuestion(prev => prev + 1);
-        const nextAnswer = answers[mbtiQuestionsImproved[currentQuestion + 1].id];
+        const nextAnswer = answers[questions[currentQuestion + 1]?.id];
         setSelectedOption(nextAnswer?.option || null);
         setSelectedIntensity(nextAnswer?.intensity || null);
       }
@@ -98,7 +99,7 @@ export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireI
       onNext();
     } else {
       setCurrentQuestion(prev => prev + 1);
-      const nextAnswer = answers[mbtiQuestionsImproved[currentQuestion + 1].id];
+      const nextAnswer = answers[questions[currentQuestion + 1]?.id];
       setSelectedOption(nextAnswer?.option || null);
       setSelectedIntensity(nextAnswer?.intensity || null);
     }
@@ -107,7 +108,7 @@ export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireI
   const handlePrevious = useCallback(() => {
     if (currentQuestion > 0) {
       setCurrentQuestion(prev => prev - 1);
-      const prevAnswer = answers[mbtiQuestionsImproved[currentQuestion - 1].id];
+      const prevAnswer = answers[questions[currentQuestion - 1]?.id];
       setSelectedOption(prevAnswer?.option || null);
       setSelectedIntensity(prevAnswer?.intensity || null);
     } else {
@@ -120,7 +121,7 @@ export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireI
       <div className="max-w-2xl mx-auto w-full">
         <ProgressBar 
           current={currentQuestion + 1} 
-          total={mbtiQuestionsImproved.length}
+          total={questions.length}
           label="질문 진행률"
         />
 

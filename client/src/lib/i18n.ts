@@ -56,7 +56,8 @@ export const translations = {
     retake: "다시 테스트하기",
     
     // Language Selector
-    selectLanguage: "언어 선택"
+    selectLanguage: "언어 선택",
+    loading: "결과를 불러오는 중..."
   },
   
   en: {
@@ -103,7 +104,8 @@ export const translations = {
     retake: "Retake Test",
     
     // Language Selector
-    selectLanguage: "Select Language"
+    selectLanguage: "Select Language",
+    loading: "Loading results..."
   },
   
   ja: {
@@ -150,7 +152,8 @@ export const translations = {
     retake: "再テスト",
     
     // Language Selector
-    selectLanguage: "言語選択"
+    selectLanguage: "言語選択",
+    loading: "結果を読み込み中..."
   },
   
   zh: {
@@ -197,14 +200,17 @@ export const translations = {
     retake: "重新测试",
     
     // Language Selector
-    selectLanguage: "选择语言"
+    selectLanguage: "选择语言",
+    loading: "加载结果中..."
   }
 };
 
 export type TranslationKey = keyof typeof translations.ko;
 
+import { useState } from 'react';
+
 export function useLanguage() {
-  const getCurrentLanguage = (): string => {
+  const [currentLanguage, setCurrentLanguage] = useState(() => {
     const saved = localStorage.getItem('mbti-language');
     if (saved && languages.some(lang => lang.code === saved)) {
       return saved;
@@ -212,16 +218,15 @@ export function useLanguage() {
     // Auto-detect browser language
     const browserLang = navigator.language.split('-')[0];
     return languages.some(lang => lang.code === browserLang) ? browserLang : 'ko';
-  };
+  });
 
   const setLanguage = (langCode: string) => {
     localStorage.setItem('mbti-language', langCode);
-    // No reload - let React handle the re-render
+    setCurrentLanguage(langCode); // Update state immediately
   };
 
   const t = (key: string): string => {
-    const currentLang = getCurrentLanguage();
-    const translation = translations[currentLang as keyof typeof translations];
+    const translation = translations[currentLanguage as keyof typeof translations];
     
     // Handle nested keys like "features.accurate"
     const keys = key.split('.');
@@ -239,7 +244,7 @@ export function useLanguage() {
   };
 
   return {
-    currentLanguage: getCurrentLanguage(),
+    currentLanguage,
     setLanguage,
     t,
     languages
