@@ -14,7 +14,7 @@ type AppStep = 'landing' | 'photo-upload' | 'questionnaire' | 'results';
 
 function AppContent() {
   const [currentStep, setCurrentStep] = useState<AppStep>('landing');
-  const { session, startNewSession, sessionId } = useTestSession();
+  const { session, resetSession, sessionId } = useTestSession();
 
   // Check if user has an existing session and navigate appropriately
   useEffect(() => {
@@ -23,7 +23,7 @@ function AppContent() {
         setCurrentStep('results');
       } else if (session.answers && typeof session.answers === 'object' && session.answers !== null && Object.keys(session.answers as Record<string, any>).length > 0) {
         setCurrentStep('questionnaire');
-      } else if (session.photoPath) {
+      } else if (session.photoFile) {
         setCurrentStep('questionnaire');
       } else {
         setCurrentStep('photo-upload');
@@ -32,9 +32,6 @@ function AppContent() {
   }, [session]);
 
   const handleStartTest = () => {
-    if (!sessionId) {
-      startNewSession();
-    }
     setCurrentStep('photo-upload');
   };
 
@@ -61,9 +58,8 @@ function AppContent() {
   };
 
   const handleRetake = () => {
-    // Clear session storage and start fresh
-    localStorage.removeItem('mbti-session-id');
-    window.location.reload();
+    resetSession();
+    setCurrentStep('landing');
   };
 
   return (

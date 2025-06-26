@@ -73,11 +73,24 @@ export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireI
     
     updateAnswers(backendAnswers);
 
-    // Reset flip after animation
+    // Auto-advance to next question after animation
     setTimeout(() => {
       setIsFlipped(false);
-    }, 1000);
-  }, [selectedOption, question.id, answers, updateAnswers]);
+      
+      if (isLastQuestion) {
+        // Complete test if it's the last question
+        completeTest().then(() => {
+          onNext();
+        });
+      } else {
+        // Move to next question
+        setCurrentQuestion(prev => prev + 1);
+        const nextAnswer = answers[mbtiQuestionsImproved[currentQuestion + 1].id];
+        setSelectedOption(nextAnswer?.option || null);
+        setSelectedIntensity(nextAnswer?.intensity || null);
+      }
+    }, 1200);
+  }, [selectedOption, question.id, answers, updateAnswers, isLastQuestion, completeTest, onNext, currentQuestion]);
 
   const handleNext = useCallback(async () => {
     if (isLastQuestion) {

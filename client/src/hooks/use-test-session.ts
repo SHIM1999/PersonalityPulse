@@ -1,115 +1,104 @@
-import { useState, useCallback } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { apiRequest } from '@/lib/queryClient';
-import { TestSession, Answers, MBTIResult } from '@shared/schema';
+import { useState, useCallback } from "react";
+import { Answers, MBTIResult } from "@shared/schema";
+import { calculateMBTIImproved } from "@/lib/mbti-calculator-improved";
+
+interface LocalTestSession {
+  sessionId: string;
+  photoFile?: File;
+  answers?: Answers;
+  result?: MBTIResult;
+  completed: boolean;
+}
 
 export function useTestSession() {
-  const [sessionId, setSessionId] = useState<string | null>(
-    localStorage.getItem('mbti-session-id')
+  const [sessionId] = useState(() => 
+    localStorage.getItem('sessionId') || crypto.randomUUID()
   );
-  const queryClient = useQueryClient();
-
-  // Get current session
-  const { data: session, isLoading } = useQuery<TestSession | null>({
-    queryKey: [`/api/test-session/${sessionId}`],
-    enabled: !!sessionId,
-    select: (data) => data,
+  
+  const [session, setSession] = useState<LocalTestSession>(() => {
+    const saved = localStorage.getItem(`session_${sessionId}`);
+    if (saved) {
+      return JSON.parse(saved);
+    }
+    return {
+      sessionId,
+      completed: false
+    };
   });
 
-  // Create new session
-  const createSessionMutation = useMutation({
-    mutationFn: async (): Promise<TestSession> => {
-      const res = await apiRequest('POST', '/api/test-session');
-      return res.json();
-    },
-    onSuccess: (data) => {
-      setSessionId(data.sessionId);
-      localStorage.setItem('mbti-session-id', data.sessionId);
-      queryClient.setQueryData([`/api/test-session/${data.sessionId}`], data);
-    },
-  });
+  // Store sessionId in localStorage
+  if (!localStorage.getItem('sessionId')) {
+    localStorage.setItem('sessionId', sessionId);
+  }
 
-  // Upload photo
-  const uploadPhotoMutation = useMutation({
-    mutationFn: async (file: File): Promise<TestSession> => {
-      if (!sessionId) throw new Error('No session ID');
-      
-      const formData = new FormData();
-      formData.append('photo', file);
-      
-      const res = await fetch(`/api/test-session/${sessionId}/photo`, {
-        method: 'POST',
-        body: formData,
-        credentials: 'include',
-      });
-      
-      if (!res.ok) {
-        const error = await res.text();
-        throw new Error(error);
-      }
-      
-      return res.json();
-    },
-    onSuccess: (data) => {
-      queryClient.setQueryData([`/api/test-session/${sessionId}`], data);
-    },
-  });
-
-  // Update answers
-  const updateAnswersMutation = useMutation({
-    mutationFn: async (answers: Answers): Promise<TestSession> => {
-      if (!sessionId) throw new Error('No session ID');
-      
-      const res = await apiRequest('POST', `/api/test-session/${sessionId}/answers`, {
-        answers,
-      });
-      return res.json();
-    },
-    onSuccess: (data) => {
-      queryClient.setQueryData([`/api/test-session/${sessionId}`], data);
-    },
-  });
-
-  // Complete test
-  const completeTestMutation = useMutation({
-    mutationFn: async (): Promise<TestSession> => {
-      if (!sessionId) throw new Error('No session ID');
-      
-      const res = await apiRequest('POST', `/api/test-session/${sessionId}/complete`);
-      return res.json();
-    },
-    onSuccess: (data) => {
-      queryClient.setQueryData([`/api/test-session/${sessionId}`], data);
-    },
-  });
-
-  const startNewSession = useCallback(() => {
-    createSessionMutation.mutate();
-  }, [createSessionMutation]);
+  const saveSession = useCallback((updatedSession: LocalTestSession) => {
+    setSession(updatedSession);
+    localStorage.setItem(`session_${sessionId}`, JSON.stringify(updatedSession));
+  }, [sessionId]);
 
   const uploadPhoto = useCallback((file: File) => {
-    uploadPhotoMutation.mutate(file);
-  }, [uploadPhotoMutation]);
+    return new Promise<LocalTestSession>((resolve) => {
+      const updatedSession = {
+        ...session,
+        photoFile: file
+      };
+      saveSession(updatedSession);
+      resolve(updatedSession);
+    });
+  }, [session, saveSession]);
 
   const updateAnswers = useCallback((answers: Answers) => {
-    updateAnswersMutation.mutate(answers);
-  }, [updateAnswersMutation]);
+    return new Promise<LocalTestSession>((resolve) => {
+      const updatedSession = {
+        ...session,
+        answers
+      };
+      saveSession(updatedSession);
+      resolve(updatedSession);
+    });
+  }, [session, saveSession]);
 
   const completeTest = useCallback(() => {
-    completeTestMutation.mutate();
-  }, [completeTestMutation]);
+    return new Promise<LocalTestSession>((resolve) => {
+      if (!session.answers) {
+        throw new Error("No answers provided");
+      }
+      
+      const result = calculateMBTIImproved(session.answers);
+      const updatedSession = {
+        ...session,
+        result,
+        completed: true
+      };
+      saveSession(updatedSession);
+      resolve(updatedSession);
+    });
+  }, [session, saveSession]);
+
+  const resetSession = useCallback(() => {
+    const newSessionId = crypto.randomUUID();
+    localStorage.setItem('sessionId', newSessionId);
+    localStorage.removeItem(`session_${sessionId}`);
+    
+    const newSession = {
+      sessionId: newSessionId,
+      completed: false
+    };
+    setSession(newSession);
+    localStorage.setItem(`session_${newSessionId}`, JSON.stringify(newSession));
+  }, [sessionId]);
 
   return {
-    session,
-    isLoading,
     sessionId,
-    startNewSession,
+    session,
+    isLoading: false,
     uploadPhoto,
     updateAnswers,
     completeTest,
-    isCreatingSession: createSessionMutation.isPending,
-    isUploadingPhoto: uploadPhotoMutation.isPending,
-    isUpdatingAnswers: updateAnswersMutation.isPending,
-    isCompletingTest: completeTestMutation.isPending,
+    resetSession,
+    isCreatingSession: false,
+    isUploadingPhoto: false,
+    isUpdatingAnswers: false,
+    isCompletingTest: false
   };
 }
