@@ -65,11 +65,11 @@ export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireI
 
     // Convert to format expected by backend
     const backendAnswers: Record<string, string> = {};
-    for (const [questionId, answerData] of Object.entries(newAnswers)) {
+    Object.entries(newAnswers).forEach(([questionId, answerData]) => {
       // Convert intensity to score (1=강함, 3=보통, 5=약함)
       const score = answerData.intensity <= 2 ? 'strong' : answerData.intensity === 3 ? 'medium' : 'weak';
       backendAnswers[questionId] = `${answerData.option}_${score}`;
-    }
+    });
     
     updateAnswers(backendAnswers);
 

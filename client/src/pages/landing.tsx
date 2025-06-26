@@ -62,19 +62,11 @@ export default function LandingPage({ onStartTest }: LandingPageProps) {
           </motion.div>
           
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4">
-            Personality
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary ml-2">
-              Quest
-            </span>
+            {t('landingTitle')}
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-600 mb-8">
-            AI와 함께하는 혁신적인 MBTI 여정
-          </p>
-          
-          <p className="text-lg text-gray-500 mb-12 max-w-2xl mx-auto">
-            당신의 사진과 답변을 통해 더 깊이 있는 성격 분석을 경험해보세요. 
-            게임처럼 재미있고, 결과는 더욱 정확하게.
+            {t('landingSubtitle')}
           </p>
         </motion.div>
 
@@ -115,7 +107,7 @@ export default function LandingPage({ onStartTest }: LandingPageProps) {
             size="lg"
             className="bg-gradient-to-r from-primary to-secondary text-white px-12 py-4 text-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
           >
-            검사 시작하기
+{t('startTest')}
           </Button>
         </motion.div>
       </div>

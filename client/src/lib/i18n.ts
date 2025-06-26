@@ -216,7 +216,7 @@ export function useLanguage() {
 
   const setLanguage = (langCode: string) => {
     localStorage.setItem('mbti-language', langCode);
-    window.location.reload(); // Simple reload for now
+    // No reload - let React handle the re-render
   };
 
   const t = (key: string): string => {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Globe, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -7,8 +7,15 @@ import { useLanguage } from '@/lib/i18n';
 export function LanguageSelector() {
   const [isOpen, setIsOpen] = useState(false);
   const { currentLanguage, setLanguage, languages, t } = useLanguage();
+  const [key, setKey] = useState(0);
 
   const currentLang = languages.find(lang => lang.code === currentLanguage);
+
+  const handleLanguageChange = (langCode: string) => {
+    setLanguage(langCode);
+    setIsOpen(false);
+    setKey(prev => prev + 1); // Force re-render
+  };
 
   return (
     <div className="relative">
@@ -35,10 +42,7 @@ export function LanguageSelector() {
             {languages.map((lang) => (
               <button
                 key={lang.code}
-                onClick={() => {
-                  setLanguage(lang.code);
-                  setIsOpen(false);
-                }}
+                onClick={() => handleLanguageChange(lang.code)}
                 className={`w-full text-left px-4 py-2 hover:bg-gray-50 first:rounded-t-lg last:rounded-b-lg flex items-center gap-2 ${
                   lang.code === currentLanguage ? 'bg-blue-50 text-blue-600' : ''
                 }`}
