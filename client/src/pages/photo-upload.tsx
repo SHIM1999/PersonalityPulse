@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ProgressBar } from '@/components/progress-bar';
 import { useTestSession } from '@/hooks/use-test-session';
 import { useToast } from '@/hooks/use-toast';
+import { LanguageSelector } from '@/components/language-selector';
 
 interface PhotoUploadProps {
   onNext: () => void;
@@ -72,6 +73,11 @@ export default function PhotoUpload({ onNext, onBack }: PhotoUploadProps) {
     <section className="min-h-screen flex items-center justify-center p-4">
       <div className="max-w-2xl mx-auto w-full">
         <ProgressBar current={1} total={3} />
+        
+        {/* Language Selector */}
+        <div className="absolute top-4 right-4">
+          <LanguageSelector />
+        </div>
 
         <motion.div 
           className="text-center mb-8"

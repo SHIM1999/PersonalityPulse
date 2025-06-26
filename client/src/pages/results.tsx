@@ -62,21 +62,43 @@ export default function Results({ onRetake }: ResultsProps) {
   return (
     <section className="min-h-screen flex items-center justify-center p-4">
       <div className="max-w-4xl mx-auto w-full">
-        {/* Results Header */}
+        {/* Results Header with Photo */}
         <motion.div 
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <motion.div 
-            className="w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center mx-auto mb-6"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.6, type: "spring" }}
-          >
-            <span className="text-white text-2xl font-bold">{result.type}</span>
-          </motion.div>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-6">
+            {/* Photo Display */}
+            {session.photoFile && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="flex-shrink-0"
+              >
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-xl overflow-hidden bg-gray-100">
+                  <img
+                    src={URL.createObjectURL(session.photoFile)}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
+            )}
+            
+            {/* MBTI Result Circle */}
+            <motion.div 
+              className="w-24 h-24 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.6, type: "spring" }}
+            >
+              <span className="text-white text-2xl font-bold">{result.type}</span>
+            </motion.div>
+          </div>
+          
           <h2 className="text-4xl font-bold text-gray-900 mb-4">
             {result.title}
           </h2>

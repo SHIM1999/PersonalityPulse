@@ -2,12 +2,15 @@ import { motion } from 'framer-motion';
 import { Brain, Camera, Gamepad2, TrendingUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { LanguageSelector } from '@/components/language-selector';
+import { useLanguage } from '@/lib/i18n';
 
 interface LandingPageProps {
   onStartTest: () => void;
 }
 
 export default function LandingPage({ onStartTest }: LandingPageProps) {
+  const { t } = useLanguage();
   const features = [
     {
       icon: Camera,
@@ -31,6 +34,11 @@ export default function LandingPage({ onStartTest }: LandingPageProps) {
 
   return (
     <section className="min-h-screen flex items-center justify-center p-4">
+      {/* Language Selector */}
+      <div className="absolute top-4 right-4">
+        <LanguageSelector />
+      </div>
+      
       <div className="max-w-4xl mx-auto text-center">
         {/* Hero Section */}
         <motion.div 

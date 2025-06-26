@@ -8,13 +8,16 @@ export function calculateMBTIImproved(answers: Record<string, string>): MBTIResu
     J: 0, P: 0
   };
 
-  // Question to dimension mapping for the improved questions
+  // Question to dimension mapping for the improved 40 questions
   const questionDimensions: Record<number, 'EI' | 'SN' | 'TF' | 'JP'> = {
-    1: 'EI', 2: 'TF', 3: 'SN', 4: 'JP',
-    5: 'EI', 6: 'TF', 7: 'SN', 8: 'JP',
-    9: 'EI', 10: 'TF', 11: 'SN', 12: 'JP',
-    13: 'EI', 14: 'TF', 15: 'SN', 16: 'JP',
-    17: 'EI', 18: 'TF', 19: 'SN', 20: 'JP'
+    // EI questions
+    1: 'EI', 5: 'EI', 9: 'EI', 13: 'EI', 17: 'EI', 21: 'EI', 25: 'EI', 29: 'EI', 33: 'EI', 37: 'EI',
+    // TF questions  
+    2: 'TF', 6: 'TF', 10: 'TF', 14: 'TF', 18: 'TF', 22: 'TF', 26: 'TF', 30: 'TF', 34: 'TF', 38: 'TF',
+    // SN questions
+    3: 'SN', 7: 'SN', 11: 'SN', 15: 'SN', 19: 'SN', 23: 'SN', 27: 'SN', 31: 'SN', 35: 'SN', 39: 'SN',
+    // JP questions
+    4: 'JP', 8: 'JP', 12: 'JP', 16: 'JP', 20: 'JP', 24: 'JP', 28: 'JP', 32: 'JP', 36: 'JP', 40: 'JP'
   };
 
   // Parse answers and calculate scores with intensity
