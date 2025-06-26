@@ -5,11 +5,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ProgressBar } from '@/components/progress-bar';
 import { getRandomQuestions } from '@/lib/mbti-questions-pool';
+import { HomeButton } from '@/components/home-button';
 import { useTestSession } from '@/hooks/use-test-session';
 
 interface QuestionnaireImprovedProps {
   onNext: () => void;
   onBack: () => void;
+  onHome: () => void;
 }
 
 type IntensityLevel = 1 | 2 | 3 | 4 | 5;
@@ -20,7 +22,7 @@ interface Answer {
   intensity: IntensityLevel;
 }
 
-export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireImprovedProps) {
+export default function QuestionnaireImproved({ onNext, onBack, onHome }: QuestionnaireImprovedProps) {
   const [questions] = useState(() => getRandomQuestions()); // 40개 랜덤 질문
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<Record<number, Answer>>({});
@@ -117,7 +119,8 @@ export default function QuestionnaireImproved({ onNext, onBack }: QuestionnaireI
   }, [currentQuestion, answers, onBack]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center p-4">
+    <section className="min-h-screen flex items-center justify-center p-4 pt-16">
+      <HomeButton onHome={onHome} />
       <div className="max-w-2xl mx-auto w-full">
         <ProgressBar 
           current={currentQuestion + 1} 

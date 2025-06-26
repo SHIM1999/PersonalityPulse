@@ -62,19 +62,24 @@ function AppContent() {
     setCurrentStep('landing');
   };
 
+  const handleHome = () => {
+    resetSession();
+    setCurrentStep('landing');
+  };
+
   return (
     <div className="min-h-screen">
       {currentStep === 'landing' && (
         <LandingPage onStartTest={handleStartTest} />
       )}
       {currentStep === 'photo-upload' && (
-        <PhotoUpload onNext={handleNext} onBack={handleBack} />
+        <PhotoUpload onNext={handleNext} onBack={handleBack} onHome={handleHome} />
       )}
       {currentStep === 'questionnaire' && (
-        <QuestionnaireImproved onNext={handleNext} onBack={handleBack} />
+        <QuestionnaireImproved onNext={handleNext} onBack={handleBack} onHome={handleHome} />
       )}
       {currentStep === 'results' && (
-        <Results onRetake={handleRetake} />
+        <Results onRetake={handleRetake} onHome={handleHome} />
       )}
     </div>
   );

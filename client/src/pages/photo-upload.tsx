@@ -4,6 +4,7 @@ import { CloudUpload, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ProgressBar } from '@/components/progress-bar';
+import { HomeButton } from '@/components/home-button';
 import { useTestSession } from '@/hooks/use-test-session';
 import { useToast } from '@/hooks/use-toast';
 
@@ -11,9 +12,10 @@ import { useToast } from '@/hooks/use-toast';
 interface PhotoUploadProps {
   onNext: () => void;
   onBack: () => void;
+  onHome: () => void;
 }
 
-export default function PhotoUpload({ onNext, onBack }: PhotoUploadProps) {
+export default function PhotoUpload({ onNext, onBack, onHome }: PhotoUploadProps) {
   const [uploadedPhoto, setUploadedPhoto] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const { uploadPhoto, isUploadingPhoto } = useTestSession();
@@ -70,7 +72,8 @@ export default function PhotoUpload({ onNext, onBack }: PhotoUploadProps) {
   }, []);
 
   return (
-    <section className="min-h-screen flex items-center justify-center p-4">
+    <section className="min-h-screen flex items-center justify-center p-4 pt-16">
+      <HomeButton onHome={onHome} />
       <div className="max-w-2xl mx-auto w-full">
         <ProgressBar current={1} total={3} />
 

@@ -113,6 +113,10 @@ testSessions {
 ## Changelog
 
 - June 26, 2025. Initial setup
+- June 26, 2025. Added 40-question randomization system with no duplicates
+- June 26, 2025. Improved language selection functionality - moved to landing page
+- June 26, 2025. Added home button to all pages for easy navigation back to main screen
+- June 26, 2025. Reduced top padding across all pages for better mobile experience
 
 ## User Preferences
 

@@ -5,12 +5,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { useTestSession } from '@/hooks/use-test-session';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/lib/i18n';
+import { HomeButton } from '@/components/home-button';
 
 interface ResultsProps {
   onRetake: () => void;
+  onHome: () => void;
 }
 
-export default function Results({ onRetake }: ResultsProps) {
+export default function Results({ onRetake, onHome }: ResultsProps) {
   const { session } = useTestSession();
   const { toast } = useToast();
   const { t } = useLanguage();
@@ -62,7 +64,8 @@ export default function Results({ onRetake }: ResultsProps) {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center p-4">
+    <section className="min-h-screen flex items-center justify-center p-4 pt-16">
+      <HomeButton onHome={onHome} />
       <div className="max-w-4xl mx-auto w-full">
         {/* Results Header with Photo */}
         <motion.div 
