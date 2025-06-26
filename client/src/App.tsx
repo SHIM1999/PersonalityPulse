@@ -7,7 +7,7 @@ import { useTestSession } from "@/hooks/use-test-session";
 
 import LandingPage from "@/pages/landing";
 import PhotoUpload from "@/pages/photo-upload";
-import Questionnaire from "@/pages/questionnaire";
+import QuestionnaireImproved from "@/pages/questionnaire-improved";
 import Results from "@/pages/results";
 
 type AppStep = 'landing' | 'photo-upload' | 'questionnaire' | 'results';
@@ -21,7 +21,7 @@ function AppContent() {
     if (session) {
       if (session.completed) {
         setCurrentStep('results');
-      } else if (Object.keys(session.answers).length > 0) {
+      } else if (session.answers && typeof session.answers === 'object' && session.answers !== null && Object.keys(session.answers as Record<string, any>).length > 0) {
         setCurrentStep('questionnaire');
       } else if (session.photoPath) {
         setCurrentStep('questionnaire');
@@ -75,7 +75,7 @@ function AppContent() {
         <PhotoUpload onNext={handleNext} onBack={handleBack} />
       )}
       {currentStep === 'questionnaire' && (
-        <Questionnaire onNext={handleNext} onBack={handleBack} />
+        <QuestionnaireImproved onNext={handleNext} onBack={handleBack} />
       )}
       {currentStep === 'results' && (
         <Results onRetake={handleRetake} />

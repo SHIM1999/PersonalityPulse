@@ -1,6 +1,6 @@
 import { MBTIResult } from "@shared/schema";
 
-export function calculateMBTI(answers: Record<string, string>): MBTIResult {
+export function calculateMBTIImproved(answers: Record<string, string>): MBTIResult {
   const scores = {
     E: 0, I: 0,
     S: 0, N: 0,
@@ -8,29 +8,43 @@ export function calculateMBTI(answers: Record<string, string>): MBTIResult {
     J: 0, P: 0
   };
 
-  // Question to dimension mapping
+  // Question to dimension mapping for the improved questions
   const questionDimensions: Record<number, 'EI' | 'SN' | 'TF' | 'JP'> = {
     1: 'EI', 2: 'TF', 3: 'SN', 4: 'JP',
     5: 'EI', 6: 'TF', 7: 'SN', 8: 'JP',
     9: 'EI', 10: 'TF', 11: 'SN', 12: 'JP',
     13: 'EI', 14: 'TF', 15: 'SN', 16: 'JP',
-    17: 'EI', 18: 'TF', 19: 'SN', 20: 'JP',
-    21: 'EI', 22: 'TF', 23: 'SN', 24: 'JP'
+    17: 'EI', 18: 'TF', 19: 'SN', 20: 'JP'
   };
 
-  // Count scores based on answers
+  // Parse answers and calculate scores with intensity
   Object.entries(answers).forEach(([questionNum, answer]) => {
     const qNum = parseInt(questionNum);
     const dimension = questionDimensions[qNum];
     
+    if (!dimension) return;
+
+    // Parse answer format: "A_strong", "B_medium", etc.
+    const [option, intensity] = answer.split('_');
+    
+    // Calculate score based on intensity
+    let score = 1; // base score
+    if (intensity === 'strong') score = 3;
+    else if (intensity === 'medium') score = 2;
+    else if (intensity === 'weak') score = 1;
+    
     if (dimension === 'EI') {
-      answer === 'A' ? scores.E++ : scores.I++;
+      if (option === 'A') scores.E += score;
+      else scores.I += score;
     } else if (dimension === 'SN') {
-      answer === 'A' ? scores.N++ : scores.S++;
+      if (option === 'A') scores.N += score;
+      else scores.S += score;
     } else if (dimension === 'TF') {
-      answer === 'A' ? scores.T++ : scores.F++;
+      if (option === 'A') scores.T += score;
+      else scores.F += score;
     } else if (dimension === 'JP') {
-      answer === 'A' ? scores.J++ : scores.P++;
+      if (option === 'A') scores.J += score;
+      else scores.P += score;
     }
   });
 

@@ -5,7 +5,7 @@ import { z } from "zod";
 import { answerSchema, mbtiResultSchema } from "@shared/schema";
 import multer from "multer";
 import path from "path";
-import { calculateMBTI } from "../client/src/lib/mbti-calculator";
+import { calculateMBTIImproved } from "../client/src/lib/mbti-calculator-improved";
 
 // Configure multer for file uploads
 const upload = multer({
@@ -95,7 +95,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Calculate MBTI result
-      const result = calculateMBTI(session.answers as Record<string, string>);
+      const result = calculateMBTIImproved(session.answers as Record<string, string>);
       
       // Add AI photo analysis if photo exists
       if (session.photoPath) {
