@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { Answers, MBTIResult } from "@shared/schema";
-import { calculateMBTIImproved } from "@/lib/mbti-calculator-improved";
+import { calculateMBTI } from "@/lib/mbti-calculator";
 
 interface LocalTestSession {
   sessionId: string;
@@ -91,7 +91,7 @@ export function useTestSession() {
         throw new Error("No answers provided");
       }
 
-      const result = calculateMBTIImproved(session.answers);
+      const result = calculateMBTI(session.answers);
       const updatedSession = {
         ...session,
         result,
