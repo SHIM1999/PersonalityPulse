@@ -110,13 +110,13 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
         >
           <Card className="shadow-lg mb-8">
             <CardContent className="p-8">
-              <div className="grid md:grid-cols-2 gap-8">
+              <div>
                 {/* Personality Traits */}
                 <div>
-                  <h3 className="text-2xl font-semibold mb-6">성격 특성</h3>
+                  <h3 className="text-2xl font-semibold mb-6">{t("dimensions")}</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-700">외향성 (E)</span>
+                      <span className="text-gray-700">{t("extroversion")}</span>
                       <div className="w-32 bg-gray-200 rounded-full h-2">
                         <motion.div
                           className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full"
@@ -130,7 +130,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-700">직관형 (N)</span>
+                      <span className="text-gray-700">{t("intuition")}</span>
                       <div className="w-32 bg-gray-200 rounded-full h-2">
                         <motion.div
                           className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full"
@@ -144,7 +144,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-700">감정형 (F)</span>
+                      <span className="text-gray-700">{t("feeling")}</span>
                       <div className="w-32 bg-gray-200 rounded-full h-2">
                         <motion.div
                           className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full"
@@ -158,7 +158,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-700">인식형 (P)</span>
+                      <span className="text-gray-700">{t("perceiving")}</span>
                       <div className="w-32 bg-gray-200 rounded-full h-2">
                         <motion.div
                           className="bg-gradient-to-r from-primary to-secondary h-2 rounded-full"
@@ -174,47 +174,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
                   </div>
                 </div>
 
-                {/* AI Photo Analysis */}
-                <div>
-                  <h3 className="text-2xl font-semibold mb-6">AI 사진 분석</h3>
-                  {result.aiAnalysis ? (
-                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-6">
-                      <div className="flex items-center mb-4">
-                        <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center mr-3">
-                          <span className="text-white text-sm">AI</span>
-                        </div>
-                        <span className="font-semibold text-gray-800">
-                          AI 분석 결과
-                        </span>
-                      </div>
-                      <div className="space-y-3 text-sm text-gray-700">
-                        {result.aiAnalysis.expressions.map(
-                          (expression, index) => (
-                            <motion.div
-                              key={index}
-                              className="flex items-center"
-                              initial={{ opacity: 0, x: -20 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{
-                                duration: 0.4,
-                                delay: 1 + index * 0.1,
-                              }}
-                            >
-                              <div className="w-2 h-2 bg-accent rounded-full mr-3" />
-                              <span>{expression}</span>
-                            </motion.div>
-                          ),
-                        )}
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="bg-gray-50 rounded-xl p-6 text-center">
-                      <p className="text-gray-500">
-                        사진이 업로드되지 않아 AI 분석을 수행하지 못했습니다.
-                      </p>
-                    </div>
-                  )}
-                </div>
+                
               </div>
             </CardContent>
           </Card>
@@ -231,7 +191,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
             <CardContent className="p-6">
               <h3 className="text-xl font-semibold mb-4 text-accent flex items-center">
                 <Star className="mr-2" size={20} />
-                주요 강점
+                {t("strengths")}
               </h3>
               <ul className="space-y-2 text-gray-700">
                 {result.strengths.map((strength, index) => (
@@ -254,7 +214,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
             <CardContent className="p-6">
               <h3 className="text-xl font-semibold mb-4 text-warning flex items-center">
                 <Lightbulb className="mr-2" size={20} />
-                성장 포인트
+                {t("growthAreas")}
               </h3>
               <ul className="space-y-2 text-gray-700">
                 {result.growthAreas.map((area, index) => (
@@ -283,7 +243,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
           <Card className="shadow-lg mb-8">
             <CardContent className="p-6">
               <h3 className="text-xl font-semibold mb-4 text-center">
-                결과 공유하기
+                {t("shareTitle")}
               </h3>
               <div className="flex justify-center space-x-4 flex-wrap gap-2">
                 <Button
@@ -302,7 +262,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
                 </Button>
                 <Button onClick={copyLink} variant="outline">
                   <Copy className="mr-2" size={16} />
-                  링크 복사
+                  {t("copyLink")}
                 </Button>
               </div>
             </CardContent>
@@ -318,7 +278,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
         >
           <Button onClick={onRetake} variant="outline" className="mr-4">
             <RotateCcw className="mr-2" size={16} />
-            다시 검사하기
+            {t("retake")}
           </Button>
           <Button
             onClick={downloadReport}

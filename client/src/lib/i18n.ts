@@ -61,6 +61,12 @@ export const translations = {
     // Language Selector
     selectLanguage: "언어 선택",
     loading: "결과를 불러오는 중...",
+    
+    // Results page
+    extroversion: "외향성 (E)",
+    intuition: "직관형 (N)", 
+    feeling: "감정형 (F)",
+    perceiving: "인식형 (P)",
     questions: [
       {
         id: 1,
@@ -391,6 +397,12 @@ export const translations = {
     // Language Selector
     selectLanguage: "Select Language",
     loading: "Loading results...",
+    
+    // Results page
+    extroversion: "Extroversion (E)",
+    intuition: "Intuition (N)",
+    feeling: "Feeling (F)", 
+    perceiving: "Perceiving (P)",
     questions: [
       {
         id: 1,
@@ -727,6 +739,12 @@ export const translations = {
     // Language Selector
     selectLanguage: "言語選択",
     loading: "結果を読み込み中...",
+    
+    // Results page
+    extroversion: "外向性 (E)",
+    intuition: "直観型 (N)",
+    feeling: "感情型 (F)",
+    perceiving: "知覚型 (P)",
     questions: [
       {
         id: 1,
@@ -1057,6 +1075,12 @@ export const translations = {
     // Language Selector
     selectLanguage: "选择语言",
     loading: "加载结果中...",
+    
+    // Results page
+    extroversion: "外向性 (E)",
+    intuition: "直觉型 (N)",
+    feeling: "情感型 (F)",
+    perceiving: "感知型 (P)",
     questions: [
       {
         id: 1,
@@ -1387,6 +1411,12 @@ export const translations = {
     // Language Selector
     selectLanguage: "Выбрать язык",
     loading: "Загрузка результатов...",
+    
+    // Results page
+    extroversion: "Экстраверсия (E)",
+    intuition: "Интуиция (N)",
+    feeling: "Чувства (F)",
+    perceiving: "Восприятие (P)",
     questions: [
       {
         id: 1,
