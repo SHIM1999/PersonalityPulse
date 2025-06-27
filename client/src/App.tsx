@@ -4,17 +4,18 @@ import { queryClient } from "./lib/queryClient";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { useTestSession } from "@/hooks/use-test-session";
+import { LanguageProvider } from "@/lib/i18n";
 
 import LandingPage from "@/pages/landing";
-import PhotoUpload from "@/pages/photo-upload";
 import QuestionnaireImproved from "@/pages/questionnaire-improved";
 import Results from "@/pages/results";
 
-type AppStep = 'landing' | 'photo-upload' | 'questionnaire' | 'results';
+type AppStep = 'landing' | 'questionnaire' | 'results';
 
 function AppContent() {
   const [currentStep, setCurrentStep] = useState<AppStep>('landing');
-  const { session, resetSession, sessionId } = useTestSession();
+  const { session, resetSession, sessionId, updateUsername } = useTestSession();
+  const [username, setUsername] = useState<string>(session?.username || "");
 
   // Check if user has an existing session and navigate appropriately
   useEffect(() => {
@@ -23,37 +24,29 @@ function AppContent() {
         setCurrentStep('results');
       } else if (session.answers && typeof session.answers === 'object' && session.answers !== null && Object.keys(session.answers as Record<string, any>).length > 0) {
         setCurrentStep('questionnaire');
-      } else if (session.photoFile) {
+      } else if (session.username) {
         setCurrentStep('questionnaire');
       } else {
-        setCurrentStep('photo-upload');
+        setCurrentStep('landing');
       }
     }
   }, [session]);
 
-  const handleStartTest = () => {
-    setCurrentStep('photo-upload');
+  const handleStartTest = (username: string) => {
+    setUsername(username);
+    updateUsername(username);
+    setCurrentStep('questionnaire');
   };
 
   const handleNext = () => {
-    switch (currentStep) {
-      case 'photo-upload':
-        setCurrentStep('questionnaire');
-        break;
-      case 'questionnaire':
-        setCurrentStep('results');
-        break;
+    if (currentStep === 'questionnaire') {
+      setCurrentStep('results');
     }
   };
 
   const handleBack = () => {
-    switch (currentStep) {
-      case 'photo-upload':
-        setCurrentStep('landing');
-        break;
-      case 'questionnaire':
-        setCurrentStep('photo-upload');
-        break;
+    if (currentStep === 'questionnaire') {
+      setCurrentStep('landing');
     }
   };
 
@@ -72,14 +65,11 @@ function AppContent() {
       {currentStep === 'landing' && (
         <LandingPage onStartTest={handleStartTest} />
       )}
-      {currentStep === 'photo-upload' && (
-        <PhotoUpload onNext={handleNext} onBack={handleBack} onHome={handleHome} />
-      )}
       {currentStep === 'questionnaire' && (
-        <QuestionnaireImproved onNext={handleNext} onBack={handleBack} onHome={handleHome} />
+        <QuestionnaireImproved onNext={handleNext} onBack={handleBack} onHome={handleHome} username={username || session?.username || ""} />
       )}
       {currentStep === 'results' && (
-        <Results onRetake={handleRetake} onHome={handleHome} />
+        <Results onRetake={handleRetake} onHome={handleHome} username={username || session?.username || ""} />
       )}
     </div>
   );
@@ -87,12 +77,14 @@ function AppContent() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <AppContent />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <LanguageProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <AppContent />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </LanguageProvider>
   );
 }
 

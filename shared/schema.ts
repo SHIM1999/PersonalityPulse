@@ -1,4 +1,12 @@
-import { pgTable, text, serial, integer, boolean, timestamp, jsonb } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  serial,
+  integer,
+  boolean,
+  timestamp,
+  jsonb,
+} from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -36,10 +44,12 @@ export const mbtiResultSchema = z.object({
   }),
   strengths: z.array(z.string()),
   growthAreas: z.array(z.string()),
-  aiAnalysis: z.object({
-    expressions: z.array(z.string()),
-    confidence: z.number(),
-  }).optional(),
+  aiAnalysis: z
+    .object({
+      expressions: z.array(z.string()),
+      confidence: z.number(),
+    })
+    .optional(),
 });
 
 export type MBTIResult = z.infer<typeof mbtiResultSchema>;
