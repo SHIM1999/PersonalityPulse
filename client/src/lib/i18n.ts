@@ -1717,3 +1717,62 @@ export const translations = {
     ],
   },
 };
+
+// Language context
+interface LanguageContextType {
+  currentLanguage: string;
+  setLanguage: (lang: string) => void;
+  languages: Language[];
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(
+  undefined,
+);
+
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export function LanguageProvider({ children }: LanguageProviderProps) {
+  const [currentLanguage, setCurrentLanguage] = useState<string>("ko");
+
+  const setLanguage = (lang: string) => {
+    setCurrentLanguage(lang);
+    localStorage.setItem("preferred-language", lang);
+  };
+
+  const t = (key: string): string => {
+    const keys = key.split(".");
+    let value: any = translations[currentLanguage as keyof typeof translations];
+
+    for (const k of keys) {
+      value = value?.[k];
+    }
+
+    return value || key;
+  };
+
+  React.useEffect(() => {
+    const savedLanguage = localStorage.getItem("preferred-language");
+    if (savedLanguage && languages.some((lang) => lang.code === savedLanguage)) {
+      setCurrentLanguage(savedLanguage);
+    }
+  }, []);
+
+  return (
+    <LanguageContext.Provider
+      value={{ currentLanguage, setLanguage, languages, t }}
+    >
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
+}
