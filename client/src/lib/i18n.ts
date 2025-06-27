@@ -61,10 +61,10 @@ export const translations = {
     // Language Selector
     selectLanguage: "언어 선택",
     loading: "결과를 불러오는 중...",
-    
+
     // Results page
     extroversion: "외향성 (E)",
-    intuition: "직관형 (N)", 
+    intuition: "직관형 (N)",
     feeling: "감정형 (F)",
     perceiving: "인식형 (P)",
     questions: [
@@ -397,11 +397,11 @@ export const translations = {
     // Language Selector
     selectLanguage: "Select Language",
     loading: "Loading results...",
-    
+
     // Results page
     extroversion: "Extroversion (E)",
     intuition: "Intuition (N)",
-    feeling: "Feeling (F)", 
+    feeling: "Feeling (F)",
     perceiving: "Perceiving (P)",
     questions: [
       {
@@ -739,7 +739,7 @@ export const translations = {
     // Language Selector
     selectLanguage: "言語選択",
     loading: "結果を読み込み中...",
-    
+
     // Results page
     extroversion: "外向性 (E)",
     intuition: "直観型 (N)",
@@ -833,7 +833,8 @@ export const translations = {
       {
         id: 13,
         dimension: "EI",
-        text: "チームで働くとき、あなたが活躍するのは：",
+        text: "チームで働く```typescript
+とき、あなたが活躍するのは：",
         optionA: "他の人と協力し、ブレインストーミングする。",
         optionB: "自分の仕事のパートに深く集中する。",
       },
@@ -1075,7 +1076,7 @@ export const translations = {
     // Language Selector
     selectLanguage: "选择语言",
     loading: "加载结果中...",
-    
+
     // Results page
     extroversion: "外向性 (E)",
     intuition: "直觉型 (N)",
@@ -1373,8 +1374,8 @@ export const translations = {
     features: {
       accurate: "Точный анализ",
       accurateDesc: "Более точные результаты с 40 продуманными вопросами",
-      ai: "AI Photo Analysis",
-      aiDesc: "Additional personality insights through photos",
+      ai: "AI анализ фото",
+      aiDesc: "Дополнительные инсайты личности через фотографии",
       detailed: "Подробный отчет",
       detailedDesc: "Полный анализ, включая сильные стороны и зоны роста",
     },
@@ -1411,7 +1412,7 @@ export const translations = {
     // Language Selector
     selectLanguage: "Выбрать язык",
     loading: "Загрузка результатов...",
-    
+
     // Results page
     extroversion: "Экстраверсия (E)",
     intuition: "Интуиция (N)",
@@ -1676,121 +1677,4 @@ export const translations = {
         text: "Столкнувшись с сильными эмоциями другого человека, вы:",
         optionA:
           "Пытаетесь оставаться объективным и логически понять ситуацию.",
-        optionB: "Чувствуете их эмоции и предлагаете эмоциональную поддержку.",
-      },
-      {
-        id: 36,
-        dimension: "JP",
-        text: "Ваше рабочее место (стол, офис) обычно:",
-        optionA: "Аккуратное, организованное и систематически устроенное.",
-        optionB:
-          "Функционально загроможденное, с предметами в пределах легкой досягаемости.",
-      },
-      {
-        id: 37,
-        dimension: "EI",
-        text: "Незнакомцу вы можете показаться:",
-        optionA: "Открытым и легким в общении.",
-        optionB: "Спокойным, сдержанным и вдумчивым.",
-      },
-      {
-        id: 38,
-        dimension: "SN",
-        text: "В сессии мозгового штурма вы лучше справляетесь с:",
-        optionA:
-          "Уточнением существующих идей, чтобы сделать их более реалистичными.",
-        optionB: "Генерацией смелых, нестандартных, новых идей.",
-      },
-      {
-        id: 39,
-        dimension: "TF",
-        text: "Когда вы оцениваете свой успех, что для вас важнее?",
-        optionA: "Объективные достижения и достижение поставленных целей.",
-        optionB: "Личностный рост и удовлетворение от процесса.",
-      },
-      {
-        id: 40,
-        dimension: "JP",
-        text: "Как быстро вы принимаете решения?",
-        optionA:
-          "Я стараюсь принять решение как можно быстрее, чтобы двигаться дальше.",
-        optionB:
-          "Я предпочитаю оставлять свои варианты открытыми до последней минуты.",
-      },
-    ],
-  },
-};
-
-export type TranslationKey = keyof typeof translations.ko;
-
-interface LanguageContextType {
-  currentLanguage: string;
-  setLanguage: (langCode: string) => void;
-  t: (key: string) => string;
-  languages: Language[];
-  translations: typeof translations; // <<< ADD THIS LINE
-}
-
-const LanguageContext = createContext<LanguageContextType | undefined>(
-  undefined,
-);
-
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [currentLanguage, setCurrentLanguage] = useState(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("mbti-language");
-      if (saved && languages.some((lang) => lang.code === saved)) {
-        return saved;
-      }
-      // Auto-detect browser language
-      const browserLang = navigator.language.split("-")[0];
-      return languages.some((lang) => lang.code === browserLang)
-        ? browserLang
-        : "ko";
-    }
-    return "ko"; // Default for server-side rendering
-  });
-
-  const setLanguage = (langCode: string) => {
-    localStorage.setItem("mbti-language", langCode);
-    setCurrentLanguage(langCode);
-  };
-
-  const t = (key: string): string => {
-    const translation =
-      translations[currentLanguage as keyof typeof translations];
-    // Handle nested keys like "features.accurate"
-    const keys = key.split(".");
-    let value: any = translation;
-    for (const k of keys) {
-      if (value && typeof value === "object" && k in value) {
-        value = value[k];
-      } else {
-        return key;
-      }
-    }
-    return typeof value === "string" ? value : key;
-  };
-
-  return React.createElement(
-    LanguageContext.Provider,
-    {
-      value: {
-        currentLanguage,
-        setLanguage,
-        t,
-        languages,
-        translations, // <<< ADD THIS LINE
-      },
-    },
-    children,
-  );
-}
-
-export function useLanguage() {
-  const context = useContext(LanguageContext);
-  if (!context) {
-    throw new Error("useLanguage must be used within a LanguageProvider");
-  }
-  return context;
-}
+        optionB: "
