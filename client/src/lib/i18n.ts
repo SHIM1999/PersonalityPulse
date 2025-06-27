@@ -1838,38 +1838,54 @@ interface LanguageProviderProps {
   children: ReactNode;
 }
 
-export function LanguageProvider({ children }: LanguageProviderProps) {
-  const [currentLanguage, setCurrentLanguage] = useState<string>("ko");
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [currentLanguage, setCurrentLanguage] = useState(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("mbti-language");
+      if (saved && languages.some((lang) => lang.code === saved)) {
+        return saved;
+      }
+      const browserLang = navigator.language.split("-")[0];
+      return languages.some((lang) => lang.code === browserLang)
+        ? browserLang
+        : "ko";
+    }
+    return "ko"; 
+  });
 
-  const setLanguage = (lang: string) => {
-    setCurrentLanguage(lang);
-    localStorage.setItem("preferred-language", lang);
+  const setLanguage = (langCode: string) => {
+    localStorage.setItem("mbti-language", langCode);
+    setCurrentLanguage(langCode);
   };
 
   const t = (key: string): string => {
+    const translation =
+      translations[currentLanguage as keyof typeof translations];
     const keys = key.split(".");
-    let value: any = translations[currentLanguage as keyof typeof translations];
-
+    let value: any = translation;
     for (const k of keys) {
-      value = value?.[k];
+      if (value && typeof value === "object" && k in value) {
+        value = value[k];
+      } else {
+        return key;
+      }
     }
-
-    return value || key;
+    return typeof value === "string" ? value : key;
   };
 
-  React.useEffect(() => {
-    const savedLanguage = localStorage.getItem("preferred-language");
-    if (savedLanguage && languages.some((lang) => lang.code === savedLanguage)) {
-      setCurrentLanguage(savedLanguage);
-    }
-  }, []);
-
-  return (
-    <LanguageContext.Provider
-      value={{ currentLanguage, setLanguage, languages, t }}
-    >
-      {children}
-    </LanguageContext.Provider>
+  // This is the corrected return statement
+  return React.createElement(
+    LanguageContext.Provider,
+    {
+      value: {
+        currentLanguage,
+        setLanguage,
+        t,
+        languages,
+        translations, // <<< THE ONLY CHANGE IS ADDING THIS LINE
+      },
+    },
+    children,
   );
 }
 
