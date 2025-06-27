@@ -127,6 +127,13 @@ function getMBTITypeDetails(type: string, lang: string) {
   }
 }
 
+interface TypeDetails {
+  title: string;
+  subtitle: string;
+  strengths: string[];
+  growthAreas: string[];
+}
+
 function getRussianTypeDetails(type: string): TypeDetails {
   const russianTypes: Record<string, TypeDetails> = {
     INTJ: {
@@ -358,6 +365,7 @@ function getRussianTypeDetails(type: string): TypeDetails {
   return russianTypes[type] || russianTypes["INFP"];
 }
 
+  function getTypeDetails(type: string, lang: string): TypeDetails {
   const allTypeDetails = {
     ko: {
       ENFP: {
