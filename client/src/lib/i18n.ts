@@ -29,10 +29,6 @@ export const translations = {
       detailedDesc: "강점과 성장 영역까지 포함된 완전한 분석",
     },
 
-    // Photo Upload
-    photoTitle: "사진 업로드",
-    photoSubtitle: "AI 분석을 위한 사진을 업로드해주세요",
-    uploadText: "사진을 드래그하거나 클릭하여 업로드",
     skip: "건너뛰기",
     next: "다음",
     back: "이전",
@@ -61,6 +57,31 @@ export const translations = {
     // Language Selector
     selectLanguage: "언어 선택",
     loading: "결과를 불러오는 중...",
+
+    // For Results Page
+    resultsForUser: "결과를 확인하세요, {username}님!",
+    shareOnTwitterText: "저의 MBTI 결과는 {type} - {title}입니다! 당신의 유형도 알아보세요.",
+
+    // Toast Messages
+    toastSuccessTitle: "성공",
+    toastSuccessDesc: "링크가 클립보드에 복사되었습니다.",
+    toastErrorTitle: "오류",
+    toastErrorDesc: "링크 복사에 실패했습니다.",
+    toastWipTitle: "준비 중",
+    toastWipDesc: "PDF 리포트 다운로드 기능은 곧 제공될 예정입니다.",
+
+    // Personality Dimensions
+    introversion: "내향",
+    extroversion: "외향",
+    sensing: "감각",
+    intuition: "직관",
+    thinking: "사고",
+    feeling: "감정",
+    judging: "판단",
+    perceiving: "인식",
+
+    // Buttons
+    downloadReport: "상세 리포트 다운로드",
 
     // Results page
     extroversion: "외향성 (E)",
@@ -365,10 +386,6 @@ export const translations = {
       detailedDesc: "Complete analysis including strengths and growth areas",
     },
 
-    // Photo Upload
-    photoTitle: "Upload Photo",
-    photoSubtitle: "Please upload a photo for AI analysis",
-    uploadText: "Drag or click to upload photo",
     skip: "Skip",
     next: "Next",
     back: "Back",
@@ -397,6 +414,31 @@ export const translations = {
     // Language Selector
     selectLanguage: "Select Language",
     loading: "Loading results...",
+
+    // For Results Page
+    resultsForUser: "Here are your results, {username}!",
+    shareOnTwitterText: "My MBTI result is {type} - {title}! Find out yours.",
+
+    // Toast Messages
+    toastSuccessTitle: "Success",
+    toastSuccessDesc: "The link has been copied to your clipboard.",
+    toastErrorTitle: "Error",
+    toastErrorDesc: "Failed to copy the link.",
+    toastWipTitle: "Coming Soon",
+    toastWipDesc: "The PDF report download feature will be available soon.",
+
+    // Personality Dimensions
+    introversion: "Introversion",
+    extroversion: "Extroversion",
+    sensing: "Sensing",
+    intuition: "Intuition",
+    thinking: "Thinking",
+    feeling: "Feeling",
+    judging: "Judging",
+    perceiving: "Perceiving",
+
+    // Buttons
+    downloadReport: "Download Detailed Report",
 
     // Results page
     extroversion: "Extroversion (E)",
@@ -707,10 +749,6 @@ export const translations = {
       detailedDesc: "強みと成長領域を含む完全な分析",
     },
 
-    // Photo Upload
-    photoTitle: "写真アップロード",
-    photoSubtitle: "AI分析のための写真をアップロードしてください",
-    uploadText: "写真をドラッグまたはクリックしてアップロード",
     skip: "スキップ",
     next: "次へ",
     back: "戻る",
@@ -739,6 +777,31 @@ export const translations = {
     // Language Selector
     selectLanguage: "言語選択",
     loading: "結果を読み込み中...",
+
+    // For Results Page
+    resultsForUser: "{username}さんの結果はこちらです！",
+    shareOnTwitterText: "私のMBTIの結果は{type} - {title}でした！あなたのタイプも調べてみましょう。",
+
+    // Toast Messages
+    toastSuccessTitle: "成功",
+    toastSuccessDesc: "リンクをクリップボードにコピーしました。",
+    toastErrorTitle: "エラー",
+    toastErrorDesc: "リンクのコピーに失敗しました。",
+    toastWipTitle: "準備中",
+    toastWipDesc: "PDFレポートのダウンロード機能は近日公開予定です。",
+
+    // Personality Dimensions
+    introversion: "内向",
+    extroversion: "外向",
+    sensing: "感覚",
+    intuition: "直観",
+    thinking: "思考",
+    feeling: "感情",
+    judging: "判断",
+    perceiving: "知覚",
+
+    // Buttons
+    downloadReport: "詳細レポートをダウンロード",
 
     // Results page
     extroversion: "外向性 (E)",
@@ -833,8 +896,7 @@ export const translations = {
       {
         id: 13,
         dimension: "EI",
-        text: "チームで働く```typescript
-とき、あなたが活躍するのは：",
+        text: "チームで働く```とき、あなたが活躍するのは：",
         optionA: "他の人と協力し、ブレインストーミングする。",
         optionB: "自分の仕事のパートに深く集中する。",
       },
@@ -1044,10 +1106,6 @@ export const translations = {
       detailedDesc: "包含优势和成长领域的完整分析",
     },
 
-    // Photo Upload
-    photoTitle: "上传照片",
-    photoSubtitle: "请上传照片以进行AI分析",
-    uploadText: "拖拽或点击上传照片",
     skip: "跳过",
     next: "下一步",
     back: "返回",
@@ -1076,6 +1134,31 @@ export const translations = {
     // Language Selector
     selectLanguage: "选择语言",
     loading: "加载结果中...",
+
+    // For Results Page
+    resultsForUser: "{username}，这是您的结果！",
+    shareOnTwitterText: "我的MBTI结果是 {type} - {title}！快来测测你的类型吧。",
+
+    // Toast Messages
+    toastSuccessTitle: "成功",
+    toastSuccessDesc: "链接已复制到剪贴板。",
+    toastErrorTitle: "错误",
+    toastErrorDesc: "复制链接失败。",
+    toastWipTitle: "即将推出",
+    toastWipDesc: "PDF报告下载功能即将推出。",
+
+    // Personality Dimensions
+    introversion: "内向",
+    extroversion: "外向",
+    sensing: "感觉",
+    intuition: "直觉",
+    thinking: "思考",
+    feeling: "情感",
+    judging: "判断",
+    perceiving: "感知",
+
+    // Buttons
+    downloadReport: "下载详细报告",
 
     // Results page
     extroversion: "外向性 (E)",
@@ -1380,10 +1463,6 @@ export const translations = {
       detailedDesc: "Полный анализ, включая сильные стороны и зоны роста",
     },
 
-    // Photo Upload
-    photoTitle: "Загрузка фото",
-    photoSubtitle: "Пожалуйста, загрузите фото для AI-анализа",
-    uploadText: "Перетащите или кликните для загрузки фото",
     skip: "Пропустить",
     next: "Далее",
     back: "Назад",
@@ -1412,6 +1491,31 @@ export const translations = {
     // Language Selector
     selectLanguage: "Выбрать язык",
     loading: "Загрузка результатов...",
+
+    // For Results Page
+    resultsForUser: "Вот ваши результаты, {username}!",
+    shareOnTwitterText: "Мой результат MBTI: {type} - {title}! Узнайте и свой тип.",
+
+    // Toast Messages
+    toastSuccessTitle: "Успех",
+    toastSuccessDesc: "Ссылка скопирована в буфер обмена.",
+    toastErrorTitle: "Ошибка",
+    toastErrorDesc: "Не удалось скопировать ссылку.",
+    toastWipTitle: "Скоро",
+    toastWipDesc: "Функция загрузки PDF-отчета скоро будет доступна.",
+
+    // Personality Dimensions
+    introversion: "Интроверсия",
+    extroversion: "Экстраверсия",
+    sensing: "Сенсорика",
+    intuition: "Интуиция",
+    thinking: "Мышление",
+    feeling: "Чувство",
+    judging: "Суждение",
+    perceiving: "Восприятие",
+
+    // Buttons
+    downloadReport: "Скачать подробный отчет",
 
     // Results page
     extroversion: "Экстраверсия (E)",
