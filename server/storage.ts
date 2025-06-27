@@ -1,11 +1,22 @@
-import { testSessions, type TestSession, type InsertTestSession, type MBTIResult, type Answers } from "@shared/schema";
+import {
+  testSessions,
+  type TestSession,
+  type Answers,
+  type MBTIResult,
+} from "@shared/schema";
 
 export interface IStorage {
   createTestSession(sessionId: string): Promise<TestSession>;
   getTestSession(sessionId: string): Promise<TestSession | undefined>;
-  updateTestSessionPhoto(sessionId: string, photoPath: string): Promise<TestSession>;
-  updateTestSessionAnswers(sessionId: string, answers: Answers): Promise<TestSession>;
-  completeTestSession(sessionId: string, result: MBTIResult): Promise<TestSession>;
+  updateTestSessionAnswers(
+    sessionId: string,
+    answers: Answers,
+  ): Promise<TestSession>;
+  completeTestSession(
+    sessionId: string,
+    result: MBTIResult,
+  ): Promise<TestSession>;
+  // 사진 관련 함수 제거
 }
 
 export class MemStorage implements IStorage {
@@ -36,34 +47,29 @@ export class MemStorage implements IStorage {
     return this.sessions.get(sessionId);
   }
 
-  async updateTestSessionPhoto(sessionId: string, photoPath: string): Promise<TestSession> {
+  async updateTestSessionAnswers(
+    sessionId: string,
+    answers: Answers,
+  ): Promise<TestSession> {
     const session = this.sessions.get(sessionId);
     if (!session) {
       throw new Error("Session not found");
     }
-    
-    session.photoPath = photoPath;
-    this.sessions.set(sessionId, session);
-    return session;
-  }
 
-  async updateTestSessionAnswers(sessionId: string, answers: Answers): Promise<TestSession> {
-    const session = this.sessions.get(sessionId);
-    if (!session) {
-      throw new Error("Session not found");
-    }
-    
     session.answers = answers;
     this.sessions.set(sessionId, session);
     return session;
   }
 
-  async completeTestSession(sessionId: string, result: MBTIResult): Promise<TestSession> {
+  async completeTestSession(
+    sessionId: string,
+    result: MBTIResult,
+  ): Promise<TestSession> {
     const session = this.sessions.get(sessionId);
     if (!session) {
       throw new Error("Session not found");
     }
-    
+
     session.result = result;
     session.completed = true;
     this.sessions.set(sessionId, session);
