@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { z } from "zod";
 import { answerSchema, mbtiResultSchema } from "@shared/schema";
-import { calculateMBTIImproved } from "../client/src/lib/mbti-calculator-improved";
+import { calculateMBTI } from "../client/src/lib/mbti-calculator";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Create new test session
@@ -66,9 +66,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Calculate MBTI result on backend (선택 사항, 클라이언트로 이동 가능)
-      const result = calculateMBTIImproved(
-        session.answers as Record<string, string>,
-      );
+      const result = calculateMBTI(session.answers as Record<string, string>);
 
       // 사진 AI 분석 부분 제거 (클라이언트에서 처리 가능)
 

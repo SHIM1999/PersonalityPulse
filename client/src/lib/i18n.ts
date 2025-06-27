@@ -1698,6 +1698,7 @@ interface LanguageContextType {
   setLanguage: (langCode: string) => void;
   t: (key: string) => string;
   languages: Language[];
+  translations: typeof translations; // <<< ADD THIS LINE
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(
@@ -1743,7 +1744,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   return React.createElement(
     LanguageContext.Provider,
-    { value: { currentLanguage, setLanguage, t, languages } },
+    {
+      value: {
+        currentLanguage,
+        setLanguage,
+        t,
+        languages,
+        translations, // <<< ADD THIS LINE
+      },
+    },
     children,
   );
 }

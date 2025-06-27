@@ -1,7 +1,7 @@
 import { MBTIResult } from "@shared/schema";
 // No longer needs to import 'translations' for the results logic
 
-export function calculateMBTIImproved(
+export function calculateMBTI(
   answers: Record<string, string>,
   // We need to know the language to pass it to our local getMBTITypeDetails function
   lang: string = "en",
@@ -219,7 +219,7 @@ function getMBTITypeDetails(type: string, lang: string) {
         ],
       },
       INTJ: {
-        title: "용의주도한 건축가",
+        title: "용s��le�도한 건축가",
         subtitle: "독립적이고 전략적인 사고가",
         strengths: [
           "장기적 비전과 전략적 사고",
@@ -724,7 +724,7 @@ function getMBTITypeDetails(type: string, lang: string) {
         strengths: [
           "体系的な組織管理能力",
           "責任感のあるリーダーシップ",
-          "効率的な業務処理",
+          "効率的な業務�Ц���",
         ],
         growthAreas: [
           "創造的思考と革新",
@@ -945,7 +945,7 @@ function getMBTITypeDetails(type: string, lang: string) {
           "Страстная и позитивная энергия",
         ],
         growthAreas: [
-          "Улучшение концентрации на деталях",
+          "Уsas�учшение концентрации на деталях",
           "Навыки долгосрочного планирования",
           "Последовательное исполнение",
         ],
