@@ -1892,7 +1892,8 @@ function getPersonalityDetails(type: string, language: string = 'en') {
           "論理的な分析と討論能力",
         ],
         growthAreas: [
-          "持続的な集中力の維持          "ルーチンワークの処理能力",
+          "持続的な集中力の維持",
+          "ルーチンワークの処理能力",
           "感情的な配慮の育成",
         ],
       },
