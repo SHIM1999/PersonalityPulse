@@ -60,7 +60,8 @@ export const translations = {
 
     // For Results Page
     resultsForUser: "결과를 확인하세요, {username}님!",
-    shareOnTwitterText: "저의 MBTI 결과는 {type} - {title}입니다! 당신의 유형도 알아보세요.",
+    shareOnTwitterText:
+      "저의 MBTI 결과는 {type} - {title}입니다! 당신의 유형도 알아보세요.",
 
     // Toast Messages
     toastSuccessTitle: "성공",
@@ -70,24 +71,19 @@ export const translations = {
     toastWipTitle: "준비 중",
     toastWipDesc: "PDF 리포트 다운로드 기능은 곧 제공될 예정입니다.",
 
-    // Personality Dimensions
-    introversion: "내향",
-    extroversion: "외향",
-    sensing: "감각",
-    intuition: "직관",
-    thinking: "사고",
-    feeling: "감정",
-    judging: "판단",
-    perceiving: "인식",
+    // Personality Dimensions (These are used on the Results Page)
+    introversion: "내향 (I)",
+    extroversion: "외향 (E)",
+    sensing: "감각 (S)",
+    intuition: "직관 (N)",
+    thinking: "사고 (T)",
+    feeling: "감정 (F)",
+    judging: "판단 (J)",
+    perceiving: "인식 (P)",
 
     // Buttons
     downloadReport: "상세 리포트 다운로드",
 
-    // Results page
-    extroversion: "외향성 (E)",
-    intuition: "직관형 (N)",
-    feeling: "감정형 (F)",
-    perceiving: "인식형 (P)",
     questions: [
       {
         id: 1,
@@ -427,24 +423,19 @@ export const translations = {
     toastWipTitle: "Coming Soon",
     toastWipDesc: "The PDF report download feature will be available soon.",
 
-    // Personality Dimensions
-    introversion: "Introversion",
-    extroversion: "Extroversion",
-    sensing: "Sensing",
-    intuition: "Intuition",
-    thinking: "Thinking",
-    feeling: "Feeling",
-    judging: "Judging",
-    perceiving: "Perceiving",
+    // Personality Dimensions (These are used on the Results Page)
+    introversion: "Introversion (I)",
+    extroversion: "Extroversion (E)",
+    sensing: "Sensing (S)",
+    intuition: "Intuition (N)",
+    thinking: "Thinking (T)",
+    feeling: "Feeling (F)",
+    judging: "Judging (J)",
+    perceiving: "Perceiving (P)",
 
     // Buttons
     downloadReport: "Download Detailed Report",
 
-    // Results page
-    extroversion: "Extroversion (E)",
-    intuition: "Intuition (N)",
-    feeling: "Feeling (F)",
-    perceiving: "Perceiving (P)",
     questions: [
       {
         id: 1,
@@ -780,7 +771,8 @@ export const translations = {
 
     // For Results Page
     resultsForUser: "{username}さんの結果はこちらです！",
-    shareOnTwitterText: "私のMBTIの結果は{type} - {title}でした！あなたのタイプも調べてみましょう。",
+    shareOnTwitterText:
+      "私のMBTIの結果は{type} - {title}でした！あなたのタイプも調べてみましょう。",
 
     // Toast Messages
     toastSuccessTitle: "成功",
@@ -790,24 +782,19 @@ export const translations = {
     toastWipTitle: "準備中",
     toastWipDesc: "PDFレポートのダウンロード機能は近日公開予定です。",
 
-    // Personality Dimensions
-    introversion: "内向",
-    extroversion: "外向",
-    sensing: "感覚",
-    intuition: "直観",
-    thinking: "思考",
-    feeling: "感情",
-    judging: "判断",
-    perceiving: "知覚",
+    // Personality Dimensions (These are used on the Results Page)
+    introversion: "内向 (I)",
+    extroversion: "外向 (E)",
+    sensing: "感覚 (S)",
+    intuition: "直観 (N)",
+    thinking: "思考 (T)",
+    feeling: "感情 (F)",
+    judging: "判断 (J)",
+    perceiving: "知覚 (P)",
 
     // Buttons
     downloadReport: "詳細レポートをダウンロード",
 
-    // Results page
-    extroversion: "外向性 (E)",
-    intuition: "直観型 (N)",
-    feeling: "感情型 (F)",
-    perceiving: "知覚型 (P)",
     questions: [
       {
         id: 1,
@@ -891,12 +878,12 @@ export const translations = {
         dimension: "JP",
         text: "旅行の計画を立てるとき、あなたは：",
         optionA: "詳細な旅程を立て、すべてを事前に予約する。",
-        optionB: "大まかなアイデアを持ち、多くのことをその場で決める。",
+        optionB: "大まかなアイデアを持ち、多くのことをそг�場で決める。",
       },
       {
         id: 13,
         dimension: "EI",
-        text: "チームで働く```とき、あなたが活躍するのは：",
+        text: "チームで働く```とき、あなたが活躍すт�のは：",
         optionA: "他の人と協力し、ブレインストーミングする。",
         optionB: "自分の仕事のパートに深く集中する。",
       },
@@ -1094,7 +1081,7 @@ export const translations = {
 
   zh: {
     // Landing Page
-    landingTitle: "您的专属MBTI性格测试",
+    landingTitle: "���的专属MBTI性格测试",
     landingSubtitle: "结合AI分析的精准性格测评",
     startTest: "开始测试",
     features: {
@@ -1147,24 +1134,19 @@ export const translations = {
     toastWipTitle: "即将推出",
     toastWipDesc: "PDF报告下载功能即将推出。",
 
-    // Personality Dimensions
-    introversion: "内向",
-    extroversion: "外向",
-    sensing: "感觉",
-    intuition: "直觉",
-    thinking: "思考",
-    feeling: "情感",
-    judging: "判断",
-    perceiving: "感知",
+    // Personality Dimensions (These are used on the Results Page)
+    introversion: "内向 (I)",
+    extroversion: "外向 (E)",
+    sensing: "感觉 (S)",
+    intuition: "直觉 (N)",
+    thinking: "思考 (T)",
+    feeling: "情感 (F)",
+    judging: "判断 (J)",
+    perceiving: "感知 (P)",
 
     // Buttons
     downloadReport: "下载详细报告",
 
-    // Results page
-    extroversion: "外向性 (E)",
-    intuition: "直觉型 (N)",
-    feeling: "情感型 (F)",
-    perceiving: "感知型 (P)",
     questions: [
       {
         id: 1,
@@ -1494,7 +1476,8 @@ export const translations = {
 
     // For Results Page
     resultsForUser: "Вот ваши результаты, {username}!",
-    shareOnTwitterText: "Мой результат MBTI: {type} - {title}! Узнайте и свой тип.",
+    shareOnTwitterText:
+      "Мой результат MBTI: {type} - {title}! Узнайте и свой тип.",
 
     // Toast Messages
     toastSuccessTitle: "Успех",
@@ -1504,24 +1487,19 @@ export const translations = {
     toastWipTitle: "Скоро",
     toastWipDesc: "Функция загрузки PDF-отчета скоро будет доступна.",
 
-    // Personality Dimensions
-    introversion: "Интроверсия",
-    extroversion: "Экстраверсия",
-    sensing: "Сенсорика",
-    intuition: "Интуиция",
-    thinking: "Мышление",
-    feeling: "Чувство",
-    judging: "Суждение",
-    perceiving: "Восприятие",
+    // Personality Dimensions (These are used on the Results Page)
+    introversion: "Интроверсия (I)",
+    extroversion: "Экстраверсия (E)",
+    sensing: "Сенсорика (S)",
+    intuition: "Интуиция (N)",
+    thinking: "Мышление (T)",
+    feeling: "Чувство (F)",
+    judging: "Суждение (J)",
+    perceiving: "Восприятие (P)",
 
     // Buttons
     downloadReport: "Скачать подробный отчет",
 
-    // Results page
-    extroversion: "Экстраверсия (E)",
-    intuition: "Интуиция (N)",
-    feeling: "Чувства (F)",
-    perceiving: "Восприятие (P)",
     questions: [
       {
         id: 1,
@@ -1788,7 +1766,8 @@ export const translations = {
         dimension: "JP",
         text: "Ваше рабочее пространство (стол, офис) обычно:",
         optionA: "Аккуратное, организованное и систематически устроенное.",
-        optionB: "Функционально захламленное, с предметами в пределах легкой досягаемости.",
+        optionB:
+          "Функционально захламленное, с предметами в пределах легкой досягаемости.",
       },
       {
         id: 37,
@@ -1801,7 +1780,8 @@ export const translations = {
         id: 38,
         dimension: "SN",
         text: "На сессии мозгового штурма вы лучше справляетесь с:",
-        optionA: "Усовершенствованием существующих идей, чтобы сделать их более реалистичными.",
+        optionA:
+          "Усовершенствованием существующих идей, чтобы сделать их более реалистичными.",
         optionB: "Генерированием диких, нестандартных, новых идей.",
       },
       {
@@ -1816,28 +1796,28 @@ export const translations = {
         dimension: "JP",
         text: "Как быстро вы принимаете решения?",
         optionA: "Я стараюсь решить как можно быстрее, чтобы двигаться дальше.",
-        optionB: "Я предпочитаю держать свои варианты открытыми до последнего момента.",
+        optionB:
+          "Я предпочитаю держать свои варианты открытыми до последнего момента.",
       },
     ],
   },
 };
 
-// Language context
+// Define the "blueprint" for our context's value
 interface LanguageContextType {
   currentLanguage: string;
-  setLanguage: (lang: string) => void;
-  languages: Language[];
+  setLanguage: (langCode: string) => void;
   t: (key: string) => string;
+  languages: Language[];
+  translations: typeof translations; // <<< STEP 1: ADD THIS LINE HERE
 }
 
+// Create the context with the blueprint
 const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined,
 );
 
-interface LanguageProviderProps {
-  children: ReactNode;
-}
-
+// The Provider function that gives the context its value
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [currentLanguage, setCurrentLanguage] = useState(() => {
     if (typeof window !== "undefined") {
@@ -1850,7 +1830,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         ? browserLang
         : "ko";
     }
-    return "ko"; 
+    return "ko";
   });
 
   const setLanguage = (langCode: string) => {
@@ -1873,7 +1853,6 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return typeof value === "string" ? value : key;
   };
 
-  // This is the corrected return statement
   return React.createElement(
     LanguageContext.Provider,
     {
@@ -1882,16 +1861,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         setLanguage,
         t,
         languages,
-        translations, // <<< THE ONLY CHANGE IS ADDING THIS LINE
+        translations, // <<< STEP 2: AND ADD THIS LINE HERE
       },
     },
     children,
   );
 }
 
+// The hook to use the context
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
