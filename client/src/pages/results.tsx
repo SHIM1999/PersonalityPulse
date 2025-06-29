@@ -279,7 +279,7 @@ export default function Results({ onRetake, onHome, username }: ResultsProps) {
             <Card className="shadow-lg h-full">
               <CardHeader>
                 <CardTitle className="text-xl font-semibold text-center">
-                  Actions
+                  {t("actions")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex justify-center items-center space-x-2 sm:space-x-4">

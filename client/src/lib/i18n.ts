@@ -83,6 +83,7 @@ export const translations = {
 
     // Buttons
     downloadReport: "상세 리포트 다운로드",
+    actions: "액션",
 
     questions: [
       {
@@ -435,6 +436,7 @@ export const translations = {
 
     // Buttons
     downloadReport: "Download Detailed Report",
+    actions: "Actions",
 
     questions: [
       {
@@ -794,6 +796,7 @@ export const translations = {
 
     // Buttons
     downloadReport: "詳細レポートをダウンロード",
+    actions: "アクション",
 
     questions: [
       {
@@ -1146,6 +1149,7 @@ export const translations = {
 
     // Buttons
     downloadReport: "下载详细报告",
+    actions: "操作",
 
     questions: [
       {
@@ -1499,6 +1503,7 @@ export const translations = {
 
     // Buttons
     downloadReport: "Скачать подробный отчет",
+    actions: "Действия",
 
     questions: [
       {
