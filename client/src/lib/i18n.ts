@@ -84,6 +84,8 @@ export const translations = {
     // Buttons
     downloadReport: "상세 리포트 다운로드",
     actions: "액션",
+    enterName: "이름을 입력하세요",
+    nameRequired: "이름을 입력하세요",
 
     questions: [
       {
@@ -437,6 +439,8 @@ export const translations = {
     // Buttons
     downloadReport: "Download Detailed Report",
     actions: "Actions",
+    enterName: "Enter your name",
+    nameRequired: "Please enter your name",
 
     questions: [
       {
@@ -797,6 +801,8 @@ export const translations = {
     // Buttons
     downloadReport: "詳細レポートをダウンロード",
     actions: "アクション",
+    enterName: "お名前を入力してください",
+    nameRequired: "お名前を入力してください",
 
     questions: [
       {
@@ -881,12 +887,12 @@ export const translations = {
         dimension: "JP",
         text: "旅行の計画を立てるとき、あなたは：",
         optionA: "詳細な旅程を立て、すべてを事前に予約する。",
-        optionB: "大まかなアイデアを持ち、多くのことをそг�場で決める。",
+        optionB: "大まかなアイデアを持ち、多くのことをそг場で決める。",
       },
       {
         id: 13,
         dimension: "EI",
-        text: "チームで働く```とき、あなたが活躍すт�のは：",
+        text: "チームで働く```とき、あなたが活躍すтのは：",
         optionA: "他の人と協力し、ブレインストーミングする。",
         optionB: "自分の仕事のパートに深く集中する。",
       },
@@ -1084,7 +1090,7 @@ export const translations = {
 
   zh: {
     // Landing Page
-    landingTitle: "���的专属MBTI性格测试",
+    landingTitle: "的专属MBTI性格测试",
     landingSubtitle: "结合AI分析的精准性格测评",
     startTest: "开始测试",
     features: {
@@ -1150,6 +1156,8 @@ export const translations = {
     // Buttons
     downloadReport: "下载详细报告",
     actions: "操作",
+    enterName: "请输入您的姓名",
+    nameRequired: "请输入您的姓名",
 
     questions: [
       {
@@ -1438,7 +1446,7 @@ export const translations = {
   ru: {
     // Landing Page
     landingTitle: "Ваш личный MBTI тест",
-    landingSubtitle: "Точный анализ личности с помощью AI",
+    landingSubtitle: "Точный анализ личности с помощью ИИ",
     startTest: "Начать тест",
     features: {
       accurate: "Точный анализ",
@@ -1504,6 +1512,8 @@ export const translations = {
     // Buttons
     downloadReport: "Скачать подробный отчет",
     actions: "Действия",
+    enterName: "Введите ваше имя",
+    nameRequired: "Пожалуйста, введите ваше имя",
 
     questions: [
       {
@@ -1517,7 +1527,7 @@ export const translations = {
         id: 2,
         dimension: "SN",
         text: "Начиная новый проект, вы сначала:",
-        optionA: "Думаете о общей картине и возможностях.",
+        optionA: "Думаете о общей картине и возможностях。",
         optionB: "Сосредотачиваетесь на конкретных деталях и практичности.",
       },
       {
@@ -1656,7 +1666,7 @@ export const translations = {
         id: 21,
         dimension: "EI",
         text: "На совещаниях вы склонны быть:",
-        optionA: "Спонтанным и озвучивать свои идеи.",
+        optionA: "Спонтанным и озвучивать свои идеи。",
         optionB: "Сдержанным и вдумчивым перед тем, как высказаться.",
       },
       {
@@ -1676,7 +1686,8 @@ export const translations = {
         optionB: "Сопереживаете его чувствам и предлагаете утешение.",
       },
       {
-        id: 24,
+        ```text
+id: 24,
         dimension: "JP",
         text: "Начиная новое хобби, вы:",
         optionA:

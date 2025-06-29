@@ -51,7 +51,7 @@ export default function LandingPage({ onStartTest }: LandingPageProps) {
 
   const handleStartTest = () => {
     if (!username.trim()) {
-      setError("이름을 입력해주세요.");
+      setError(t("nameRequired"));
       return;
     }
     setError("");
@@ -173,7 +173,7 @@ export default function LandingPage({ onStartTest }: LandingPageProps) {
             <div className="relative max-w-md mx-auto">
               <input
                 type="text"
-                placeholder="이름을 입력하세요"
+                placeholder={t("enterName")}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 className="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-6 py-4 text-white text-lg placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
