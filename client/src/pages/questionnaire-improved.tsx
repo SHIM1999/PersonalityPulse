@@ -126,7 +126,7 @@ export default function QuestionnaireImproved({
       setTimeout(() => {
         setIsFlipped(false);
         if (isLastQuestion) {
-          completeTest().then(() => {
+          completeTest(currentLanguage).then(() => {
             onNext();
           });
         } else {
@@ -144,19 +144,20 @@ export default function QuestionnaireImproved({
       isLastQuestion,
       completeTest,
       onNext,
+      currentLanguage,
     ],
   );
 
   const handleNext = useCallback(async () => {
     if (isLastQuestion) {
-      await completeTest();
+      await completeTest(currentLanguage);
       onNext();
     } else {
       setCurrentQuestion((prev) => prev + 1);
       setSelectedOption(null);
       setSelectedIntensity(null);
     }
-  }, [isLastQuestion, completeTest, onNext]);
+  }, [isLastQuestion, completeTest, onNext, currentLanguage]);
 
   const handlePrevious = useCallback(() => {
     if (currentQuestion > 0) {

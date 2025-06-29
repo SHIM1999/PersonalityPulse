@@ -14,6 +14,7 @@ import { useTestSession } from "@/hooks/use-test-session";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/lib/i18n";
 import { HomeButton } from "@/components/home-button";
+import { calculateMBTI } from "@/lib/mbti-calculator";
 
 interface ResultsProps {
   onRetake: () => void;

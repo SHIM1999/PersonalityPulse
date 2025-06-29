@@ -85,13 +85,13 @@ export function useTestSession() {
     [session, saveSession],
   );
 
-  const completeTest = useCallback(() => {
+  const completeTest = useCallback((language: string = 'en') => {
     return new Promise<LocalTestSession>((resolve) => {
       if (!session.answers) {
         throw new Error("No answers provided");
       }
 
-      const result = calculateMBTI(session.answers);
+      const result = calculateMBTI(session.answers, language);
       const updatedSession = {
         ...session,
         result,
