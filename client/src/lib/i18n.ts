@@ -1686,8 +1686,7 @@ export const translations = {
         optionB: "Сопереживаете его чувствам и предлагаете утешение.",
       },
       {
-        ```text
-id: 24,
+        id: 24,
         dimension: "JP",
         text: "Начиная новое хобби, вы:",
         optionA:
