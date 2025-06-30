@@ -59,7 +59,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/test-session/:sessionId/complete", async (req, res) => {
     try {
       const { sessionId } = req.params;
-      const { language = 'ko' } = req.body; // Get language from request body
+      const { language = "ko" } = req.body; // Get language from request body
       const session = await storage.getTestSession(sessionId);
 
       if (!session) {
@@ -67,7 +67,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
 
       // Calculate MBTI result on backend with language parameter
-      const result = calculateMBTI(session.answers as Record<string, string>, language);
+      const result = calculateMBTI(
+        session.answers as Record<string, string>,
+        language,
+      );
 
       // 사진 AI 분석 부분 제거 (클라이언트에서 처리 가능)
 
